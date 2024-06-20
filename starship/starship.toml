@@ -10,9 +10,9 @@ $nodejs\
 $golang\
 $fill\
 $cmd_duration\
-$battery\
 $line_break\
 $character"""
+
 command_timeout = 5000
 
 [username]
@@ -26,6 +26,7 @@ format = '[$ssh_symbol](blue) on [$hostname](red) '
 style = 'green bold'
 
 [directory]
+truncation_length = 2
 read_only = "󰌾"
 style = 'blue'
 format = '[$path]($style)[$read_only]($read_only_style)'
@@ -80,6 +81,9 @@ symbol = ' '
 min_time = 1_000
 style = 'yellow'
 show_notifications = true
+
+[battery]
+format = '[$symbol]($style)'
 
 [[battery.display]]
 threshold = 90
