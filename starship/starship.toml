@@ -29,7 +29,7 @@ style = 'green bold'
 truncation_length = 2
 read_only = "󰌾"
 style = 'blue'
-format = '[$path]($style)[$read_only]($read_only_style)'
+format = '[$path]($style) '
 truncate_to_repo = false
 read_only_style = 'red'
 truncation_symbol = "󰏗 "
@@ -81,21 +81,6 @@ symbol = ' '
 min_time = 1_000
 style = 'yellow'
 show_notifications = true
-
-[battery]
-format = '[$symbol]($style)'
-
-[[battery.display]]
-threshold = 90
-style = 'green'
-
-[[battery.display]]
-threshold = 20
-style = 'yellow'
-
-[[battery.display]]
-threshold = 10
-style = 'red'
 
 [line_break]
 symbol = "\n"
