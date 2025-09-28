@@ -2,7 +2,7 @@
     "auto_install_extensions": {
         "golangci-lint": true,
         "dockerfile": true,
-        "docker-compose": true        
+        "docker-compose": true
     },
     "git": {
         "inline_blame": {
@@ -13,8 +13,8 @@
     "inlay_hints": {
         "enabled": true,
         "show_value_hints": true,
-        "show_type_hints": true,
-        "show_parameter_hints": true,
+        "show_type_hints": false,
+        "show_parameter_hints": false,
         "show_other_hints": true,
         "show_background": false,
         "edit_debounce_ms": 700,
@@ -30,7 +30,9 @@
     "buffer_line_height": "standard",
     "buffer_font_size": 14,
     "buffer_font_family": "Hack Nerd Font",
-    "buffer_font_fallbacks": [".ZedMono"],
+    "buffer_font_fallbacks": [
+        ".ZedMono"
+    ],
     "ui_font_size": 17,
     "telemetry": {
         "diagnostics": false,
@@ -60,8 +62,8 @@
     "formatter": "language_server",
     "diagnostics": {
         "inline": {
-           	"enabled": true,
-           	"max_severity": "warning"
+            "enabled": true,
+            "max_severity": "warning"
         }
     },
     "scroll_beyond_last_line": "off",
