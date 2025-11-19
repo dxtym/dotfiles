@@ -58,7 +58,7 @@
     "disable_ai": true,
     "confirm_quit": true,
     "close_on_file_delete": true,
-    "relative_line_numbers": true,
+    "relative_line_numbers": "enabled",
     "formatter": "language_server",
     "diagnostics": {
         "inline": {

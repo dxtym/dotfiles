@@ -1,8 +1,3 @@
-case $- in
-    *i*) ;;
-      *) return;;
-esac
-
 HISTCONTROL=ignoreboth
 
 shopt -s histappend
@@ -14,54 +9,10 @@ shopt -s checkwinsize
 
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
-
-case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
-esac
-
-
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
-fi
-
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
-
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
-
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
-
+alias lh='ls -lh'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
@@ -75,7 +26,25 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export PATH=$HOME/.local/bin:$PATH
+export PATH="$PATH:$HOME/.local/bin:$(go env GOPATH)/bin"
 
+alias gs="git status"
+alias gb="git branch"
+alias gl="git log --oneline"
+
+alias docker-compose="docker compose"
 alias neofetch='neofetch --source ~/.config/neofetch/ascii.txt'
-neofetch
+
+alias update="sudo apt update && sudo apt upgrade -y"
+alias vpn="sudo openvpn --config /etc/openvpn/client/client.ovpn"
+
+set -o vi
+
+git_branch() {
+    branch=$(git symbolic-ref --short HEAD 2>/dev/null)
+    if [ -n "$branch" ]; then
+        echo " [$branch]"
+    fi
+}
+
+export PS1='\u@\h [\w]$(git_branch) $ '
